@@ -1,4 +1,108 @@
-body {
-	font-family: sans-serif;
-	text-align: center;
+.ux-menu {
+	position: relative;
+	margin-left: 10px;
+	display: inline-block;
+	vertical-align: top;
+	font-weight: 700;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	font-size: 12px;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+	font-weight: 700;
+}
+
+.ux-menu a {
+	text-decoration: none;
+	color: black;
+}
+
+.ux-menu>li {
+	float: left;
+	position: relative;
+	padding: 0;
+	width: 212px;
+	line-height: 32px;
+}
+
+.ux-menu>li>a {
+	display: block;
+	padding: 0 15px;
+	border-top: 5px solid #ccc;
+}
+
+.ux-menu>li:hover {
+	background-color: white;
+}
+
+.ux-menu>li:hover>a {
+	border-top-color: black;
+}
+
+.ux-menu>li:hover>ul {
+	opacity: 1;
+	max-height: 300px;
+}
+
+.ux-menu ul {
+	position: absolute;
+	left: 0;
+	background-color: white;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	opacity: 0;
+	max-height: 0;
+	font-size: 12px;
+	transition: opacity 0.75s, max-height 1.5s;
+	width: 212px;
+	z-index: 5;
+	overflow: hidden;
+}
+
+.ux-menu ul>li {
+	float: none;
+	position: static;
+	height: 30px;
+	line-height: 30px;
+	background: none;
+	color: black;
+	padding-left: 6px;
+}
+
+.ux-menu ul>li:hover a {
+	color: black;
+}
+
+.ux-menu li:nth-child(1):hover a {
+	border-top-color: orange;
+}
+
+.ux-menu li:nth-child(1) li:hover a {
+	color: orange;
+}
+
+.ux-menu li:nth-child(2):hover a {
+	border-top-color: orangeRed;
+}
+
+.ux-menu li:nth-child(2) li:hover a {
+	color: orangeRed;
+}
+
+.ux-menu li:nth-child(3):hover a {
+	border-top-color: crimson;
+}
+
+.ux-menu li:nth-child(3) li:hover a {
+	color: crimson;
+}
+
+.ux-menu li:nth-child(4):hover a {
+	border-top-color: maroon;
+}
+
+.ux-menu li:nth-child(4) li:hover a {
+	color: maroon;
 }

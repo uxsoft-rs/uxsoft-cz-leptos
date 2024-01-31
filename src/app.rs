@@ -26,8 +26,39 @@ pub fn App() -> impl IntoView {
 }
 
 #[component]
-fn SubMenu(children: Children) -> impl IntoView {
-    view! { <li class="leading-8 no-underline text-black font-bold text-sm border-t-[5px] border-solid border-gray-300 hover:bg-white hover:border-orange-400">{children()}</li> }
+fn SubMenu(
+    #[prop(into, default = "".to_string())] title: String,
+    #[prop(into, default = "".to_string())] href: String,
+    #[prop(optional)] children: Option<Children>,
+) -> impl IntoView {
+    view! {
+        <li class="
+            leading-8 no-underline text-black font-bold text-sm border-t-[5px] border-solid border-gray-300 
+            hover:bg-white hover:border-orange-400">
+            <a href=href>{title}</a>
+            <ul>
+                {
+                    if let Some(children) = children {
+                        children().into_view()
+                    } else {
+                        ().into_view()
+                    }
+                }
+            </ul>
+        </li>
+    }
+}
+
+#[component]
+fn MenuItem(
+    #[prop(into, default = "".to_string())] title: String,
+    #[prop(into, default = "".to_string())] href: String,
+) -> impl IntoView {
+    view! {
+        <li class="">
+            <a href={href}>{title}</a>
+        </li>
+    }
 }
 
 #[component]
@@ -45,10 +76,17 @@ fn HomePage() -> impl IntoView {
     view! {
         <div class="bg-gray-200">
             <Menu>
-                <SubMenu title href="">"Projects"</MenuItem>
-                <SubMenu>"Utilities"</MenuItem>
-                <SubMenu>"Blog"</MenuItem>
-                <SubMenu>"About"</MenuItem>
+                <SubMenu title="Projects" href="/projects">
+                    <MenuItem title="Apple Wireless Keyboard" href="/projects/awk" />
+                    <MenuItem title="Alpaca" href="/projects/alpaca" />
+                    <MenuItem title="Wishlist" href="/projects/awk" />
+                </SubMenu>
+                <SubMenu title="Utilities">
+                </SubMenu>
+                <SubMenu title="Blog">
+                </SubMenu>
+                <SubMenu title="About">
+                </SubMenu>
             </Menu>
             <h1>"Welcome to Leptos!"</h1>
             <p>Is this hot reload working?</p>

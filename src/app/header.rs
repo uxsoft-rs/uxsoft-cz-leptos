@@ -3,23 +3,17 @@ use leptos::*;
 #[component]
 pub fn Header() -> impl IntoView {
     view! {
-        <nav class="mb-3 pt-6">
-            <a rel="prefetch" href="/" class="text-transparent float-left">
+        <nav class="mb-3 pt-6 flex">
+            <a rel="prefetch" href="/" class="text-transparent flex-none">
                 <img id="logo" class="w-[37px] h-[37px]" src="/images/Images/logo.svg" alt="Logo" />
             </a>
-            <ul class="ux-menu float-right">
+            <ul class="ux-menu flex-auto w-full flex font-bold text-xs cursor-pointer ml-2.5 m-0 p-0">
                 <li>
                     <a rel="prefetch" href="/projects">Projects</a>
                     <ul>
-                        // {
-                        //     allProjects.map((item) => (
-                        //         <li>
-                        //             <a rel="prefetch" href={item.url}>
-                        //                 {item.frontmatter.title}
-                        //             </a>
-                        //         </li>
-                        //     ))
-                        // }
+                        <li><a href="https://alpaca.uxsoft.cz">Alpaca</a></li>
+                        <li><a href="/projects/awk">Apple Wireless Keyboard</a></li>
+                        <li><a href="https://apple.slickreader.eu/">Appleholik</a></li>
                     </ul>
                 </li>
                 <li>

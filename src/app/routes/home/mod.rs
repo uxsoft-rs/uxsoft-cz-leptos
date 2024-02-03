@@ -1,15 +1,20 @@
+use crate::app::components::{card::Card, markdown::Markdown};
 use leptos::*;
+
+static WEB_DEV_MD: &str = include_str!(r"./01-web-dev.md");
+static APP_DEV_MD: &str = include_str!(r"./02-app-dev.md");
 
 #[component]
 pub fn HomePage() -> impl IntoView {
-    // Creates a reactive value to update the button
-    let (count, set_count) = create_signal(0);
-    let on_click = move |_| set_count.update(|count| *count += 1);
 
     view! {
-        <div class="bg-gray-200">
-            <h1>"Welcome to Leptos!"</h1>
-            <button on:click=on_click>"Click Me: " {count}</button>
+        <div class="grid grid-cols-2 gap-2 mt-4">
+            <Card title="Web Development">
+                <Markdown markdown={WEB_DEV_MD}/>
+            </Card>
+            <Card title="App Development">
+                <Markdown markdown={APP_DEV_MD}/>
+            </Card>
         </div>
     }
 }

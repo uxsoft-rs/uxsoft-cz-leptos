@@ -1,4 +1,5 @@
 use leptos::*;
+use leptos_router::A;
 
 #[component]
 pub fn Header() -> impl IntoView {
@@ -19,15 +20,12 @@ pub fn Header() -> impl IntoView {
                 <li>
                     <a rel="prefetch" href="/utilities">Utilities</a>
                     <ul>
-                        // {
-                        //     allUtilities.map((item) => (
-                        //         <li>
-                        //             <a rel="prefetch" href={item.url}>
-                        //                 {item.frontmatter.title}
-                        //             </a>
-                        //         </li>
-                        //     ))
-                        // }
+                    {crate::app::routes::utilities::UTILITIES
+                        .iter()
+                        .map(|u| view! { 
+                            <li><A href={format!("/utilities/{}", u.id)}>{u.name}</A></li>
+                        })
+                        .collect_view()}
                     </ul>
                 </li>
                 <li>

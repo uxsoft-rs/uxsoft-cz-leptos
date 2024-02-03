@@ -1,6 +1,7 @@
----
+<!-- ---
 title: Web Development
----
+--- -->
+
 Leverage the power of exceptional web design with my specialized web development services. 
 We are dedicated to fostering your business growth in the digital landscape, offering __tailor-made__, __innovative__ solutions that ensure your online presence stands out. 
 I'm adept in utilizing the latest technology trends, providing __responsive__, __SEO-friendly__, and aesthetically appealing websites that drive __customer engagement__ and __business growth__. 

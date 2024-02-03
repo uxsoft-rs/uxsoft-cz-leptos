@@ -4,6 +4,7 @@ use leptos_router::*;
 mod footer;
 mod header;
 mod routes;
+pub mod components;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -22,6 +23,12 @@ pub fn App() -> impl IntoView {
                     <Routes>
                         <Route path="" view=routes::home::HomePage/>
                         <Route path="/about" view=routes::about::AboutPage/>
+                        <Route path="/projects" view=NotImplementedYetPage/>
+                        <Route path="/projects/:id" view=NotImplementedYetPage/>
+                        <Route path="/blog" view=NotImplementedYetPage/>
+                        <Route path="/blog/:id" view=NotImplementedYetPage/>
+                        <Route path="/utilities" view=routes::utilities::UtilitiesPage/>
+                        <Route path="/utilities/:id" view=routes::utilities::UtilityPage/>
                     </Routes>
                 </main>
 
@@ -31,6 +38,14 @@ pub fn App() -> impl IntoView {
     }
 }
 
+#[component]
+fn NotImplementedYetPage() -> impl IntoView {
+    view! {
+        <div>
+            "Not implemented yet"
+        </div>
+    }
+}
 
 /// 404 - Not Found
 #[component]

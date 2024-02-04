@@ -13,6 +13,7 @@ env:
 
 jobs:
   build:
+    timeout-minutes: 20
     runs-on: [self-hosted, linux]
 
     steps:

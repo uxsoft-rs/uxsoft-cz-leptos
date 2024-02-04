@@ -1,0 +1,54 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  HELM_VALUES: ./helm-charts/docker-storage-web/values.uxsoft-cz-leptos-dev.yaml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          platforms: linux/amd64,linux/arm64
+          
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+       
+      - name: Build and Push Image
+        uses: docker/build-push-action@v3
+        with:
+          tags: ghcr.io/${{ env.IMAGE_NAME }}:latest, ghcr.io/${{ env.IMAGE_NAME }}:${{ github.run_number }}
+          platforms: linux/amd64, linux/arm64
+          push: true
+       
+      - uses: actions/checkout@v3
+        with:
+          repository: 'uxsoft/infra-helm-charts'
+          token: ${{ secrets.PAT }}
+          ref: 'main'
+          path: './helm-charts'
+        
+      - name: Update Helm Chart Docker Image Tag
+        run: |
+          sed -i "s/^  tag:.*/  tag: ${{ github.run_number }}/" ${{ env.HELM_VALUES }}
+          
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          repository: ./helm-charts

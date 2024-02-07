@@ -1,25 +1,23 @@
-FROM rustlang/rust:nightly-alpine as builder
-
-RUN apk update && \
-    apk add --no-cache bash curl npm libc-dev binaryen
-    # protoc openssl-dev protobuf-dev gcc git g++ libc-dev make binaryen
-
-RUN npm install -g sass
-
-RUN cargo install --locked cargo-leptos
-
-# Add the WASM target
-RUN rustup target add wasm32-unknown-unknown
-
-WORKDIR /work
-COPY . .
-
-RUN cargo leptos build --release -vv
-
-FROM rustlang/rust:nightly-alpine as runner
-
+FROM lukemathwalker/cargo-chef:latest-rust-slim AS chef
 WORKDIR /app
 
+FROM chef AS planner
+COPY . .
+RUN cargo chef prepare --recipe-path recipe.json
+
+FROM chef AS builder 
+COPY --from=planner /app/recipe.json recipe.json
+# Build dependencies - this is the caching Docker layer!
+RUN cargo chef cook --release --recipe-path recipe.json
+# Build application
+COPY . .
+RUN cargo install --locked cargo-leptos
+
+RUN cargo build --release --bin app
+
+# RUNTIME
+FROM scratch AS runtime
+WORKDIR /app
 COPY --from=builder /work/target/release/uxsoft-cz-leptos /app/
 COPY --from=builder /work/target/site /app/site
 COPY --from=builder /work/Cargo.toml /app/

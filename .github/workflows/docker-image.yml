@@ -14,7 +14,7 @@ env:
 jobs:
   build:
     timeout-minutes: 20
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Set up QEMU
@@ -39,7 +39,7 @@ jobs:
           platforms: linux/amd64, linux/arm64
           push: true
        
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: 'uxsoft/infra-helm-charts'
           token: ${{ secrets.PAT }}

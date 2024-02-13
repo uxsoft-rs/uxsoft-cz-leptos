@@ -4,7 +4,7 @@ title: Chrome History Disabler
 downloadUrl: /images/Utilities/ChromeHistoryDisabler/chromehistorydisabler.exe
 imageUrl: /images/Utilities/ChromeHistoryDisabler/chromehistorydisabler.jpg
 icon: AtSymbolIcon
---- 
+---
 
 ### About
 

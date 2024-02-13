@@ -4,7 +4,7 @@ title: Minesweeper
 downloadUrl: /images/Utilities/Minesweeper/minesweeper.zip
 imageUrl: /images/Utilities/Minesweeper/minesweeper.PNG
 icon: FlagIcon
---- 
+---
 
 ### About
 

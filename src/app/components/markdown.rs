@@ -10,7 +10,7 @@ pub fn Markdown(
 
     let html = markdown_to_html(&markdown, &options); 
     view! {
-        <div inner_html={html}>
+        <div class="prose" inner_html={html}>
         </div>
     }
 }

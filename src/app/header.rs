@@ -14,15 +14,16 @@ pub fn Header() -> impl IntoView {
                         Projects
                     </a>
                     <ul>
-                        <li>
-                            <a href="https://alpaca.uxsoft.cz">Alpaca</a>
-                        </li>
-                        <li>
-                            <a href="/projects/awk">Apple Wireless Keyboard</a>
-                        </li>
-                        <li>
-                            <a href="https://apple.slickreader.eu/">Appleholik</a>
-                        </li>
+                    {crate::app::routes::projects::PROJECTS
+                        .iter()
+                        .map(|u| {
+                            view! {
+                                <li>
+                                    <A href=format!("/projects/{}", u.id)>{u.title}</A>
+                                </li>
+                            }
+                        })
+                        .collect_view()}
                     </ul>
                 </li>
                 <li>

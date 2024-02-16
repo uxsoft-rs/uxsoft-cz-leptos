@@ -23,8 +23,8 @@ pub fn App() -> impl IntoView {
                     <Routes>
                         <Route path="" view=routes::home::HomePage/>
                         <Route path="/about" view=routes::about::AboutPage/>
-                        <Route path="/projects" view=NotImplementedYetPage/>
-                        <Route path="/projects/:id" view=NotImplementedYetPage/>
+                        <Route path="/projects" view=routes::projects::ProjectsPage/>
+                        <Route path="/projects/:id" view=routes::projects::ProjectPage/>
                         <Route path="/blog" view=NotImplementedYetPage/>
                         <Route path="/blog/:id" view=NotImplementedYetPage/>
                         <Route path="/utilities" view=routes::utilities::UtilitiesPage/>

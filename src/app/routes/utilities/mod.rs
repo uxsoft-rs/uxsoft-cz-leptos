@@ -148,9 +148,7 @@ pub fn UtilityPage() -> impl IntoView {
                             class="border-0 mx-auto"
                         />
                     </div>
-                    <article class="prose max-w-full">
-                        <Markdown markdown=util.markdown/>
-                    </article>
+                    <Markdown markdown=util.markdown/>
                     <div class="h-8 mt-4">
                         <a
                             href=util.download_url

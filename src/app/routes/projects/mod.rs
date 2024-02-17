@@ -11,6 +11,7 @@ pub struct Project {
     pub thumbnail_url: &'static str,
     pub image_url: &'static str,
     pub markdown: &'static str,
+    pub short: &'static str,
 }
 
 impl Project {
@@ -36,24 +37,34 @@ pub const PROJECTS: &'static [&'static Project] = &[
         thumbnail_url: "/images/Projects/Alpaca/screenshot{0}.jpg",
         image_url: "/images/Projects/Alpaca/screenshot{0}.jpg",
         markdown: include_str!("alpaca.md"),
+        short: "Alpaca is an all-in-one product development tool aimed at organisations applying agile at scale. 
+It's an opinionated tool with built-in best practices from industry experts.
+The tool will softly guide you through the product development process end-to-end.
+Using Alpaca will make your work fun."
     },
     &Project {
         id: "appleholik",
         title: "Appleholik",
-        download_url: "/images/Utilities/CantLockThis/cantlockthis.exe",
+        download_url: "https://appleholik.uxsoft.cz",
         donate_button_id: "",
-        thumbnail_url: "",
-        image_url: "/images/Utilities/CantLockThis/cantlockthis.png",
+        thumbnail_url: "/images/Projects/Appleholic/screenshot{0}.jpg",
+        image_url: "/images/Projects/Appleholic/screenshot{0}.jpg",
         markdown: include_str!("appleholik.md"),
+        short: "Appleholic is a very simplistic news aggregator completely focused on Czech Apple news.
+It features each source in a vertical list and includes a short.",
     },
     &Project {
         id: "awk",
         title: "AppleWirelessKeyboard",
-        download_url: "/images/Utilities/ChromeHistoryDisabler/chromehistorydisabler.exe",
-        donate_button_id: "",
-        thumbnail_url: "",
-        image_url: "/images/Utilities/ChromeHistoryDisabler/chromehistorydisabler.jpg",
+        download_url: "https://install.appcenter.ms/users/uxsoft/apps/applewirelesskeyboard/distribution_groups/public",
+        donate_button_id: "4RVXP9XXVGBPA",
+        thumbnail_url: "/images/Projects/AppleWirelessKeyboard/screen{0}-full.jpg",
+        image_url: "/images/Projects/AppleWirelessKeyboard/screen{0}-full.jpg",
         markdown: include_str!("awk.md"),
+        short: "Do you love Apple Wireless Keyboard but also love Microsoft Windows? Ever wanted to use them together?
+Now you can without losing your media functionality.
+This Windows application brings your Fn key and media keys back to life with Mac-like status overlays.
+It lets you choose if you want to access media keys with Fn or instead of Function keys, by just pressing the eject key.",
     },
 ];
 
@@ -140,9 +151,7 @@ pub fn ProjectPage() -> impl IntoView {
                         }
                     </div>
                 
-                    <article class="prose">
-                        <Markdown markdown={project.markdown}/>
-                    </article>
+                    <Markdown markdown={project.markdown}/>
                 
                     <div class="text-right mx-3 mt-6">
                         <Show when={move || project.donate_button_id.len() > 0}>

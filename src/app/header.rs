@@ -47,17 +47,17 @@ pub fn Header() -> impl IntoView {
                     <a rel="prefetch" href="/blog">
                         Blog
                     </a>
-                    <ul>// {
-                    // allBlogs
-                    // .filter((item) => !item.frontmatter.draft)
-                    // .map((item) => (
-                    // <li>
-                    // <a rel="prefetch" href={item.url}>
-                    // {item.frontmatter.title}
-                    // </a>
-                    // </li>
-                    // ))
-                    // }
+                    <ul>
+                    {crate::app::routes::blog::POSTS
+                        .iter()
+                        .map(|u| {
+                            view! {
+                                <li>
+                                    <A href=format!("/blog/{}", u.id)>{u.title}</A>
+                                </li>
+                            }
+                        })
+                        .collect_view()}
                     </ul>
                 </li>
                 <li>

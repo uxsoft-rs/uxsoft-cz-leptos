@@ -1,9 +1,9 @@
 ---
 layout: ../../layouts/BlogLayout.astro
-title: Kubernetes on Raspberry Pi 4
+title: Kubernetes on Raspberry Pi
 ---
 
-## Setting up the Raspberry Pi 4
+## Setting up the Raspberry Pi 4/5
 
 Download the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash the microSD card or USB disk with the Raspberry Pi OS.
 - Change the advanced settings, specifically don't forget to change the following:

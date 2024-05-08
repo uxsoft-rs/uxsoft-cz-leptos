@@ -82,28 +82,25 @@ pub fn ListItem(
                 href=url
                 class="rounded p-2 cursor-pointer flex items-center gap-2 transition-colors duration-500 ease-in-out hover:bg-orange-100"
             >
-                {match icon {
-                    None => {
-                        view! {
-                            <>
-                                <span>{title}</span>
-                            </>
-                        }
-                    }
-                    Some(icon) => {
+                {
+                    if let Some(icon) = icon {
                         view! {
                             <>
                                 <img
                                     src=icon
-                                    alt=title
+                                    alt=title.clone()
                                     height=48
                                     width=48
                                     class="object-cover rounded w-[48px] h-[48px]"
                                 />
                             </>
                         }
+                    } else { 
+                        view! { <>()</> } 
                     }
-                }}
+                }
+
+                <span>{title}</span>
             </a>
         </li>
     }
@@ -119,7 +116,13 @@ pub fn UtilitiesPage() -> impl IntoView {
                 {UTILS
                     .iter()
                     .map(|u| {
-                        view! { <ListItem title={u.title} url=format!("/utilities/{}", u.id)/> }
+                        view! {
+                            <ListItem
+                                title=u.title
+                                url=format!("/utilities/{}", u.id)
+                                icon=Some(u.image_url.to_string())
+                            />
+                        }
                     })
                     .collect_view()}
 
@@ -133,42 +136,41 @@ pub fn UtilityPage() -> impl IntoView {
     let params = use_params_map();
 
     let component = move || {
-        params.with(|params| params
-            .get("id")
-            .cloned()
-            .and_then(|id|UTILS.iter().find(|u|u.id==id)))
-            .map(|util| view! {
-                <>
-                    <PageTitle title=util.title/>
-                    <div class="text-center mx-0 my-8">
-                        <img
-                            src=util.image_url
-                            alt="Screenshot"
-                            title=util.title
-                            class="border-0 mx-auto"
-                        />
-                    </div>
-                    <Markdown markdown=util.markdown/>
-                    <div class="h-8 mt-4">
-                        <a
-                            href=util.download_url
-                            class="btn btn-sm btn-primary float-right"
-                            rel="external"
-                            download
-                        >
-                            Download
-                        </a>
-                    </div>
-                </>
+        params
+            .with(|params| {
+                params
+                    .get("id")
+                    .cloned()
+                    .and_then(|id| UTILS.iter().find(|u| u.id == id))
             })
-            .unwrap_or(view! {
-                <>"Page not found"</>
+            .map(|util| {
+                view! {
+                    <>
+                        <PageTitle title=util.title/>
+                        <div class="text-center mx-0 my-8">
+                            <img
+                                src=util.image_url
+                                alt="Screenshot"
+                                title=util.title
+                                class="border-0 mx-auto"
+                            />
+                        </div>
+                        <Markdown markdown=util.markdown/>
+                        <div class="h-8 mt-4">
+                            <a
+                                href=util.download_url
+                                class="btn btn-sm btn-primary float-right"
+                                rel="external"
+                                download
+                            >
+                                Download
+                            </a>
+                        </div>
+                    </>
+                }
             })
+            .unwrap_or(view! { <>"Page not found"</> })
     };
 
-    view! {
-        <>
-            {component}
-        </>
-    }
+    view! { <>{component}</> }
 }

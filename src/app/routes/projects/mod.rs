@@ -1,5 +1,6 @@
 use crate::app::components::markdown::Markdown;
 use crate::app::components::page_title::PageTitle;
+use crate::app::components::carousel::Carousel;
 use leptos::*;
 use leptos_router::*;
 
@@ -134,22 +135,12 @@ pub fn ProjectPage() -> impl IntoView {
         params.with(|params| params
             .get("id")
             .cloned()
-            .and_then(|id|PROJECTS.iter().find(|u|u.id==id)))
+            .and_then(|id| PROJECTS.iter().find(|u|u.id==id)))
             .map(|project| view! {
                 <>
                     <PageTitle title=project.title/>
-                
-                    <div class="carousel rounded-box">
-                        {
-                            project.thumbnails().iter().map(|i| view! {
-                                <div class="carousel-item">
-                                    <a>
-                                        <img src={i} alt="app screenshot" class="w-[900px]" />
-                                    </a>
-                                </div>
-                            }).collect_view()
-                        }
-                    </div>
+
+                    <Carousel images={project.thumbnails()}/>
                 
                     <Markdown markdown={project.markdown}/>
                 

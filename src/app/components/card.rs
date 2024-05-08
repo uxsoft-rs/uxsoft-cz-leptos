@@ -6,7 +6,7 @@ pub fn Card(
     children: ChildrenFn
 ) -> impl IntoView {
     view! {
-        <div class="m-2 p-2">
+        <div class="m-2 p-2 text-sm text-neutral-500 leading-5">
             <h1 class="text-lg font-bold">{title}</h1>
             {children()}
         </div>

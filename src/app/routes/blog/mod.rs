@@ -1,3 +1,4 @@
+use crate::app::components::list_item::ListItem;
 use crate::app::components::markdown::Markdown;
 use crate::app::components::page_title::PageTitle;
 use leptos::*;
@@ -26,45 +27,6 @@ pub const POSTS: &'static [&'static Post] = &[
         markdown: include_str!("kubernetes-on-pi.md"),
     }
 ];
-
-#[component]
-pub fn ListItem(
-    #[prop(into, default = "".to_string())] title: String,
-    #[prop(into, default = "".to_string())] url: String,
-    #[prop(into, default = None)] icon: Option<String>,
-) -> impl IntoView {
-    view! {
-        <li>
-            <a
-                href=url
-                class="rounded p-2 cursor-pointer flex items-center gap-2 transition-colors duration-500 ease-in-out hover:bg-orange-100"
-            >
-                {match icon {
-                    None => {
-                        view! {
-                            <>
-                                <span>{title}</span>
-                            </>
-                        }
-                    }
-                    Some(icon) => {
-                        view! {
-                            <>
-                                <img
-                                    src=icon
-                                    alt=title
-                                    height=48
-                                    width=48
-                                    class="object-cover rounded w-[48px] h-[48px]"
-                                />
-                            </>
-                        }
-                    }
-                }}
-            </a>
-        </li>
-    }
-}
 
 #[component]
 pub fn BlogPage() -> impl IntoView {

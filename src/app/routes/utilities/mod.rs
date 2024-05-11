@@ -1,3 +1,4 @@
+use crate::app::components::list_item::ListItem;
 use crate::app::components::markdown::Markdown;
 use crate::app::components::page_title::PageTitle;
 use leptos::*;
@@ -71,42 +72,6 @@ pub const UTILS: &'static [&'static Util] = &[
 ];
 
 #[component]
-pub fn ListItem(
-    #[prop(into, default = "".to_string())] title: String,
-    #[prop(into, default = "".to_string())] url: String,
-    #[prop(into, default = None)] icon: Option<String>,
-) -> impl IntoView {
-    view! {
-        <li>
-            <a
-                href=url
-                class="rounded p-2 cursor-pointer flex items-center gap-2 transition-colors duration-500 ease-in-out hover:bg-orange-100"
-            >
-                {
-                    if let Some(icon) = icon {
-                        view! {
-                            <>
-                                <img
-                                    src=icon
-                                    alt=title.clone()
-                                    height=48
-                                    width=48
-                                    class="object-cover rounded w-[48px] h-[48px]"
-                                />
-                            </>
-                        }
-                    } else { 
-                        view! { <>()</> } 
-                    }
-                }
-
-                <span>{title}</span>
-            </a>
-        </li>
-    }
-}
-
-#[component]
 pub fn UtilitiesPage() -> impl IntoView {
     view! {
         <div>
@@ -120,7 +85,7 @@ pub fn UtilitiesPage() -> impl IntoView {
                             <ListItem
                                 title=u.title
                                 url=format!("/utilities/{}", u.id)
-                                icon=Some(u.image_url.to_string())
+                                icon=u.image_url.to_string()
                             />
                         }
                     })

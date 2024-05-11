@@ -1,3 +1,4 @@
+use crate::app::components::list_item::ListItem;
 use crate::app::components::markdown::Markdown;
 use crate::app::components::page_title::PageTitle;
 use crate::app::components::carousel::Carousel;
@@ -69,44 +70,7 @@ It lets you choose if you want to access media keys with Fn or instead of Functi
     },
 ];
 
-#[component]
-pub fn ListItem(
-    #[prop(into, default = "".to_string())] title: String,
-    #[prop(into, default = "".to_string())] url: String,
-    #[prop(into, default = None)] icon: Option<String>,
-) -> impl IntoView {
-    view! {
-        <li>
-            <a
-                href=url
-                class="rounded p-2 cursor-pointer flex items-center gap-2 transition-colors duration-500 ease-in-out hover:bg-orange-100"
-            >
-                {match icon {
-                    None => {
-                        view! {
-                            <>
-                                <span>{title}</span>
-                            </>
-                        }
-                    }
-                    Some(icon) => {
-                        view! {
-                            <>
-                                <img
-                                    src=icon
-                                    alt=title
-                                    height=48
-                                    width=48
-                                    class="object-cover rounded w-[48px] h-[48px]"
-                                />
-                            </>
-                        }
-                    }
-                }}
-            </a>
-        </li>
-    }
-}
+
 
 #[component]
 pub fn ProjectsPage() -> impl IntoView {
@@ -117,8 +81,9 @@ pub fn ProjectsPage() -> impl IntoView {
             <ul>
                 {PROJECTS
                     .iter()
-                    .map(|u| {
-                        view! { <ListItem title={u.title} url=format!("/projects/{}", u.id)/> }
+                    .map(|p| {
+                        let icon_url = p.thumbnail_url.replace("{0}", "1");
+                        view! { <ListItem title={p.title} url={format!("/projects/{}", p.id)} icon={icon_url}/> }
                     })
                     .collect_view()}
 
@@ -135,7 +100,7 @@ pub fn ProjectPage() -> impl IntoView {
         params.with(|params| params
             .get("id")
             .cloned()
-            .and_then(|id| PROJECTS.iter().find(|u|u.id==id)))
+            .and_then(|id| PROJECTS.iter().find(|u|u.id == id)))
             .map(|project| view! {
                 <>
                     <PageTitle title=project.title/>

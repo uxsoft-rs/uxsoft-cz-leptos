@@ -17,8 +17,8 @@ module.exports = {
           "primary": "darkOrange",
           "primary-content": "white",
           "primary-focus": "orange",
-          "--rounded-box": "6px", // border radius rounded-box utility class, used in card and other large boxes
-          "--rounded-btn": "3px", // border radius rounded-btn utility class, used in buttons and similar element
+          "--rounded-box": "0px", // 6px border radius rounded-box utility class, used in card and other large boxes
+          "--rounded-btn": "0px", // 3px border radius rounded-btn utility class, used in buttons and similar element
           "--rounded-badge": "1.9rem",
           "--btn-text-case": "none", // set default text transform for buttons
 

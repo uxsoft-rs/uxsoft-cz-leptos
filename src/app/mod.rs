@@ -12,6 +12,7 @@ pub fn App() -> impl IntoView {
     provide_meta_context();
 
     view! {
+        <Html lang="en"/>
         <Body attr:style="padding-left: calc(100vw - 100%);"/>
         <Stylesheet id="leptos" href="/pkg/uxsoft-cz-leptos.css"/>
 

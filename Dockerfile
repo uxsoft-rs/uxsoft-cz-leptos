@@ -24,7 +24,9 @@ COPY --from=builder /work/target/release/uxsoft-cz-leptos /app/
 COPY --from=builder /work/target/site /app/site
 COPY --from=builder /work/Cargo.toml /app/
 
-EXPOSE $PORT
+ENV LEPTOS_SITE_ADDR "0.0.0.0:8090"
 ENV LEPTOS_SITE_ROOT=./site
+
+EXPOSE 8090
 
 CMD ["/app/uxsoft-cz-leptos"]

@@ -3,7 +3,7 @@ use crate::app::components::markdown::Markdown;
 use crate::app::components::page_title::PageTitle;
 use leptos::*;
 use leptos_router::*;
-
+use leptos_image::Image;
 pub struct Util {
     pub id: &'static str,
     pub title: &'static str,

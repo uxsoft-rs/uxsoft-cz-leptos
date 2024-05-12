@@ -16,17 +16,23 @@ leptos_router = { version = "0.6", features = ["nightly"] }
 tokio = { version = "1", features = ["rt-multi-thread"], optional = true }
 tower = { version = "0.4", optional = true }
 tower-http = { version = "0.5", features = ["fs"], optional = true }
-wasm-bindgen = "=0.2.92"
+wasm-bindgen = "=0.2.90"
 thiserror = "1"
 tracing = { version = "0.1", optional = true }
 http = "1"
 serde = { version = "1.0.196", features = ["derive"] }
 serde_json = "1.0.113"
 comrak = "0.23.0"
+leptos_image = { version = "0.2.0", optional = true }
 # thaw = "0.2.0-alpha"
 
 [features]
-hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
+hydrate = [
+    "leptos/hydrate", 
+    "leptos_meta/hydrate", 
+    "leptos_router/hydrate",
+    "leptos_image/hydrate",
+]
 ssr = [
     "dep:axum",
     "dep:tokio",
@@ -37,7 +43,9 @@ ssr = [
     "leptos_meta/ssr",
     "leptos_router/ssr",
     "dep:tracing",
+    "leptos_image/ssr"
 ]
+leptos_image = ["dep:leptos_image"]
 
 # Defines a size-optimized profile for the WASM bundle in release mode
 [profile.wasm-release]

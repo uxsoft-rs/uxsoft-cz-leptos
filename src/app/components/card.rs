@@ -1,4 +1,5 @@
 use leptos::*;
+use leptos_image::Image;
 
 #[component]
 pub fn Card(
@@ -9,19 +10,26 @@ pub fn Card(
 ) -> impl IntoView {
     view! {
         <div class="card bg-base-100"> // shadow-xl
-        { move || 
-            if image.get().len() > 0 { 
-                view! {
-                    <figure>
-                        <img src={image.get()} alt="card image" />
-                    </figure>
-                }.into_view() 
-            } else { 
-                "".into_view() 
+            { move || 
+                if image.get().len() > 0 { 
+                    view! {
+                        <figure>
+                            <Image
+                                class="w-[446px] h-[259px]"
+                                src={image.get()}
+                                alt="Card image"
+                                width=892
+                                height=518
+                                quality=85
+                                blur=true />
+                        </figure>
+                    }.into_view() 
+                } else { 
+                    "".into_view() 
+                }
             }
-        }
             <div class="card-body">
-                <h2 class="card-title">{title}</h2>
+                <h2 class="card-title">{title()}</h2>
                 {children()}
                 {move || if !href.get().is_empty() {
                     view! { 

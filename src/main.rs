@@ -1,3 +1,9 @@
+#[derive(Clone, axum::extract::FromRef)]
+struct AppState {
+    leptos_options: leptos::LeptosOptions,
+    optimizer: leptos_image::ImageOptimizer,
+}
+
 #[cfg(feature = "ssr")]
 #[tokio::main]
 async fn main() {
@@ -6,6 +12,7 @@ async fn main() {
     use leptos_axum::{generate_route_list, LeptosRoutes};
     use uxsoft_cz_leptos::app::*;
     use uxsoft_cz_leptos::fileserv::file_and_error_handler;
+    use leptos_image::*;
 
     // Setting get_configuration(None) means we'll be using cargo-leptos's env values
     // For deployment these variables are:
@@ -16,12 +23,20 @@ async fn main() {
     let leptos_options = conf.leptos_options;
     let addr = leptos_options.site_addr;
     let routes = generate_route_list(App);
+    let root = leptos_options.site_root.clone();
+
+    // Create App State with ImageOptimizer.
+    let state = AppState {
+        leptos_options,
+        optimizer: ImageOptimizer::new("/__cache/image", root, 1),
+    };
 
     // build our application with a route
     let app = Router::new()
-        .leptos_routes(&leptos_options, routes, App)
+        .image_cache_route(&state)
+        .leptos_routes_with_context(&state, routes, state.optimizer.provide_context(), App)
         .fallback(file_and_error_handler)
-        .with_state(leptos_options);
+        .with_state(state);
 
     let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
     logging::log!("listening on http://{}", &addr);

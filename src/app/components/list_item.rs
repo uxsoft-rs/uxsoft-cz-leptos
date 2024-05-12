@@ -1,4 +1,5 @@
 use leptos::*;
+use leptos_image::Image;
 
 #[component]
 pub fn ListItem(
@@ -14,13 +15,15 @@ pub fn ListItem(
             >
                 {if !icon.get().is_empty() {
                     view! {
-                            <img
+                            <Image
+                                class="object-cover rounded w-[48px] h-[48px]"
                                 src={icon.get()}
                                 alt={title.get()}
-                                height=48
-                                width=48
-                                class="object-cover rounded w-[48px] h-[48px]"
-                            />
+                                blur=true
+                                width=144
+                                height=96
+                                quality=85
+                                lazy=true />
                     }.into_view()
                 } else {
                         view! { "" }.into_view()

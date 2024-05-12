@@ -1,6 +1,8 @@
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
+use leptos_image::{provide_image_context, Image};
+
 mod footer;
 mod header;
 mod routes;
@@ -10,6 +12,7 @@ pub mod components;
 pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
+    leptos_image::provide_image_context();
 
     view! {
         <Html lang="en"/>

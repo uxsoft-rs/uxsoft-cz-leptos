@@ -3,7 +3,14 @@ FROM rustlang/rust:nightly-alpine as builder
 RUN apk update && \
     apk add --no-cache bash curl npm libc-dev binaryen
 
-RUN cargo install --locked cargo-leptos
+# Install cargo-binstall, which makes it easier to install other
+# cargo extensions like cargo-leptos
+RUN wget https://github.com/cargo-bins/cargo-binstall/releases/latest/download/cargo-binstall-armv7-unknown-linux-gnueabihf.tgz
+RUN tar -xvf cargo-binstall-armv7-unknown-linux-gnueabihf.tgz
+RUN cp cargo-binstall /usr/local/cargo/bin
+
+# Install cargo-leptos
+RUN cargo binstall cargo-leptos -y
 
 
 # Add the WASM target

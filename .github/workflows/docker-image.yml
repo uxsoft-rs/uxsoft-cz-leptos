@@ -9,7 +9,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  HELM_VALUES: ./helm-charts/docker-storage-web/values.uxsoft-cz-leptos-dev.yaml
+  HELM_VALUES: ./helm-charts/docker-storage-web/values.uxsoft-cz-dev.yaml
 
 jobs:
   build:

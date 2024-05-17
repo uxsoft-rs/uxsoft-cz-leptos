@@ -10,22 +10,16 @@ pub struct Project {
     pub title: &'static str,
     pub download_url: &'static str,
     pub donate_button_id: &'static str,
-    pub thumbnail_url: &'static str,
     pub image_url: &'static str,
+    pub image_count: usize,
     pub markdown: &'static str,
     pub short: &'static str,
 }
 
 impl Project {
     fn images(&self) -> Vec<String> {
-        (1..4)
+        (1..self.image_count + 1)
             .map(|i| self.image_url.replace("{0}", i.to_string().as_str()))
-            .collect()
-    }
-
-    fn thumbnails(&self) -> Vec<String> {
-        (1..4)
-            .map(|i| self.thumbnail_url.replace("{0}", i.to_string().as_str()))
             .collect()
     }
 }
@@ -36,8 +30,8 @@ pub const PROJECTS: &'static [&'static Project] = &[
         title: "Alpaca",
         download_url: "https://alpaca.uxsoft.cz",
         donate_button_id: "4RVXP9XXVGBPA",
-        thumbnail_url: "/images/Projects/Alpaca/screenshot{0}.jpg",
         image_url: "/images/Projects/Alpaca/screenshot{0}.jpg",
+        image_count: 3,
         markdown: include_str!("alpaca.md"),
         short: "Alpaca is an all-in-one product development tool aimed at organisations applying agile at scale. 
 It's an opinionated tool with built-in best practices from industry experts.
@@ -49,8 +43,8 @@ Using Alpaca will make your work fun."
         title: "Appleholik",
         download_url: "https://appleholik.uxsoft.cz",
         donate_button_id: "",
-        thumbnail_url: "/images/Projects/Appleholic/screenshot{0}.jpg",
         image_url: "/images/Projects/Appleholic/screenshot{0}.jpg",
+        image_count: 1,
         markdown: include_str!("appleholik.md"),
         short: "Appleholic is a very simplistic news aggregator completely focused on Czech Apple news.
 It features each source in a vertical list and includes a short.",
@@ -60,8 +54,8 @@ It features each source in a vertical list and includes a short.",
         title: "AppleWirelessKeyboard",
         download_url: "https://install.appcenter.ms/users/uxsoft/apps/applewirelesskeyboard/distribution_groups/public",
         donate_button_id: "4RVXP9XXVGBPA",
-        thumbnail_url: "/images/Projects/AppleWirelessKeyboard/screen{0}-full.jpg",
         image_url: "/images/Projects/AppleWirelessKeyboard/screen{0}-full.jpg",
+        image_count: 4,
         markdown: include_str!("awk.md"),
         short: "Do you love Apple Wireless Keyboard but also love Microsoft Windows? Ever wanted to use them together?
 Now you can without losing your media functionality.
@@ -82,7 +76,7 @@ pub fn ProjectsPage() -> impl IntoView {
                 {PROJECTS
                     .iter()
                     .map(|p| {
-                        let icon_url = p.thumbnail_url.replace("{0}", "1");
+                        let icon_url = p.image_url.replace("{0}", "1");
                         view! { <ListItem title={p.title} url={format!("/projects/{}", p.id)} icon={icon_url}/> }
                     })
                     .collect_view()}
@@ -105,7 +99,7 @@ pub fn ProjectPage() -> impl IntoView {
                 <>
                     <PageTitle title=project.title/>
 
-                    <Carousel images={project.thumbnails()}/>
+                    <Carousel images={project.images()}/>
                 
                     <Markdown markdown={project.markdown}/>
                 

@@ -1,4 +1,4 @@
-use crate::app::components::{card::Card, markdown::Markdown};
+use crate::app::components::{card::Card, markdown::Markdown, page_title::PageTitle};
 use leptos::*;
 
 static WEB_DEV_MD: &str = include_str!(r"./01-web-dev.md");
@@ -16,19 +16,22 @@ pub fn HomePage() -> impl IntoView {
         .map(|p| p.short);
 
     view! {
-        <div class="grid grid-cols-2 mt-4 gap-2">
-            <Card title="Web Development">
-                <Markdown markdown={WEB_DEV_MD}/>
-            </Card>
-            <Card title="App Development">
-                <Markdown markdown={APP_DEV_MD}/>
-            </Card>
-            <Card title="Alpaca" image="/images/Projects/Alpaca/screenshot1.jpg" href="/projects/alpaca">
-                {alpaca}
-            </Card>
-            <Card title="AppleWirelessKeyboard" image="/images/Projects/AppleWirelessKeyboard/screen1-full.jpg" href="/projects/awk">
-                {awk}
-            </Card>
-        </div>
+        <>
+            <PageTitle title="Welcome"/>
+            <div class="grid grid-cols-2 mt-4 gap-2">
+                <Card title="Web Development">
+                    <Markdown markdown={WEB_DEV_MD}/>
+                </Card>
+                <Card title="App Development">
+                    <Markdown markdown={APP_DEV_MD}/>
+                </Card>
+                <Card title="Alpaca" image="/images/Projects/Alpaca/screenshot1.jpg" href="/projects/alpaca">
+                    {alpaca}
+                </Card>
+                <Card title="AppleWirelessKeyboard" image="/images/Projects/AppleWirelessKeyboard/screen1-full.jpg" href="/projects/awk">
+                    {awk}
+                </Card>
+            </div>
+        </>
     }
 }

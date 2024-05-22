@@ -1,4 +1,5 @@
-FROM rustlang/rust:nightly-alpine as builder
+# FROM rustlang/rust:nightly-alpine as builder
+FROM rust:alpine as builder
 
 RUN apk update && \
     apk add --no-cache bash curl npm libc-dev binaryen
@@ -7,18 +8,19 @@ RUN curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ca
 
 RUN cargo binstall cargo-leptos -y
 
-
 # Add the WASM target
-RUN rustup target add wasm32-unknown-unknown
 
 WORKDIR /work
 COPY . .
 
 RUN npm install
 
+RUN rustup target add wasm32-unknown-unknown
+
 RUN cargo leptos build --release -vv
 
-FROM rustlang/rust:nightly-alpine as runner
+# FROM rustlang/rust:nightly-alpine as runner
+FROM alpine:latest AS runner
 
 WORKDIR /app
 

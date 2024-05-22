@@ -29,7 +29,7 @@ pub fn Card(
                 }
             }
             <div class="card-body">
-                <h2 class="card-title">{title()}</h2>
+                <h2 class="card-title">{title.get()}</h2>
                 {children()}
                 {move || if !href.get().is_empty() {
                     view! { 

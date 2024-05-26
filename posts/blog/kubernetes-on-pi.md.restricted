@@ -3,7 +3,7 @@ layout: ../../layouts/BlogLayout.astro
 title: Kubernetes on Raspberry Pi 4
 ---
 
-## Setting up the Raspberry Pi 4
+## Setting up the Raspberry Pi 4/5
 
 Download the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash the microSD card or USB disk with the Raspberry Pi OS.
 - Change the advanced settings, specifically don't forget to change the following:
@@ -33,7 +33,7 @@ sudo cat /var/lib/rancher/k3s/server/token
 
 On the agent:
 ```bash
-curl -sfL https://get.k3s.io | K3S_NODE_NAME="node01" K3S_URL="https://10.0.0.100:6443" K3S_TOKEN="token from above step" sh -
+curl -sfL https://get.k3s.io | K3S_NODE_NAME="node01" K3S_URL="https://pi5.local:6443" K3S_TOKEN="token from above step" sh -
 ```
 
 On the master to verify:
@@ -49,7 +49,7 @@ On the master node:
 sudo cat /etc/rancher/k3s/k3s.yaml
 ```
 
-On the PC edit .kube/config
+On the PC edit `.kube/config`
 
 ```bash
 kubectl config use-context pi
@@ -74,18 +74,11 @@ Install pre-requisites on every node:
 sudo apt-get install open-iscsi
 ```
 
-Apply manifest:
-```bash
-kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml
-```
-
-Dashboard: port-forward 
+Install using helm
 
 ## Kubernetes CI/CD (ArgoCD)
 
-```bash
-kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/install.yaml --namespace argocd
-```
+Install using helm
 
 ## Fan Control
 
@@ -107,7 +100,7 @@ __Source:__ https://blog.driftking.tw/en/2019/11/Using-Raspberry-Pi-to-Control-a
 
 <img src="/images/blog/kubernetes-on-pi-fan-wiring.webp" width="800px">
 
-### Fan Control
+### Fan Control (PI 4)
 
 __Source:__ https://github.com/treydempsey/fan_control/tree/main
 
@@ -141,7 +134,7 @@ __Source:__ https://github.com/treydempsey/fan_control/tree/main
     sudo systemctl enable fan_control
     sudo systemctl start fan_control
     systemctl status fan_control
-    ```
+```
 
 ## Firewall
 
@@ -154,8 +147,15 @@ sudo ufw limit 22
 # allow k3s ports: https://docs.k3s.io/installation/requirements#networking
 sudo ufw allow 6443
 sudo ufw allow 2376/tcp
-sudo ufw allow 2379/tcp
-sudo ufw allow 2380/tcp
+sudo ufw allow 2379:2380/tcp
+
+# allow longhorn ports: https://longhorn.io/docs/1.6.2/references/networking/
+sudo ufw allow 9500:9503/tcp
+sudo ufw allow 8000:8002/tcp
+sudo ufw allow 8500:8501/tcp
+sudo ufw allow 10000:31000/tcp
+sudo ufw allow 3260/tcp
+sudo ufw allow 2049/tcp
 ```
 
 ## Automatic System Updates

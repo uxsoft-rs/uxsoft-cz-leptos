@@ -156,6 +156,7 @@ sudo ufw allow 8500:8501/tcp
 sudo ufw allow 10000:31000/tcp
 sudo ufw allow 3260/tcp
 sudo ufw allow 2049/tcp
+sudo ufw allow 8472/udp
 ```
 
 ## Automatic System Updates

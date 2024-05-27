@@ -9,10 +9,10 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 axum = { version = "0.7", optional = true }
 console_error_panic_hook = "0.1"
-leptos = { version = "0.6", features = [] }
-leptos_axum = { version = "0.6", optional = true }
-leptos_meta = { version = "0.6", features = [] }
-leptos_router = { version = "0.6", features = [] }
+leptos = { version = "0.6.11", features = [] }
+leptos_axum = { version = "0.6.11", optional = true }
+leptos_meta = { version = "0.6.11", features = [] }
+leptos_router = { version = "0.6.11", features = [] }
 tokio = { version = "1", features = ["rt-multi-thread"], optional = true }
 tower = { version = "0.4", optional = true }
 tower-http = { version = "0.5", features = ["fs"], optional = true }
@@ -24,14 +24,15 @@ serde = { version = "1.0.196", features = ["derive"] }
 serde_json = "1.0.113"
 comrak = "0.24"
 leptos_image = { version = "0.2.0", optional = true }
-# thaw = "0.2.0-alpha"
+# thaw = "0.3.2"
 
 [features]
 hydrate = [
-    "leptos/hydrate", 
-    "leptos_meta/hydrate", 
+    "leptos/hydrate",
+    "leptos_meta/hydrate",
     "leptos_router/hydrate",
     "leptos_image/hydrate",
+    # "thaw/hydrate"
 ]
 ssr = [
     "dep:axum",
@@ -43,7 +44,8 @@ ssr = [
     "leptos_meta/ssr",
     "leptos_router/ssr",
     "dep:tracing",
-    "leptos_image/ssr"
+    "leptos_image/ssr",
+    # "thaw/ssr"
 ]
 leptos_image = ["dep:leptos_image"]
 

@@ -43,7 +43,7 @@ jobs:
        
       - uses: actions/checkout@v4
         with:
-          repository: 'uxsoft/infra-helm-charts'
+          repository: 'uxsoft-rs/infra-helm-charts'
           token: ${{ secrets.PAT }}
           ref: 'main'
           path: './helm-charts'

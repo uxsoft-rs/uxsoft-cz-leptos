@@ -74,6 +74,9 @@ body {
 	position: static;
 	height: 30px;
 	line-height: 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 	background: none;
 	color: black;
 	padding-left: 6px;

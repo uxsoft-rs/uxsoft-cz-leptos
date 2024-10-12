@@ -1,27 +1,34 @@
+use cv_button::CvButton;
+use cv_icons::{CvEmailIcon, CvGitHubIcon, CvWebIcon};
+use cv_job::CvJob;
+use cv_page::CvPage;
+use cv_page_title::CvPageTitle;
+use cv_section::CvSection;
+use cv_tag_list::CvTagList;
 use leptos::*;
 
+mod cv_button;
+mod cv_icons;
+mod cv_job;
 mod cv_page;
 mod cv_page_title;
 mod cv_section;
-mod cv_job;
 mod cv_tag_list;
-mod cv_button;
-mod cv_icons;
 
 #[component]
 pub fn AboutPage() -> impl IntoView {
     view! {
-        <cv_page::CvPage>
-            <cv_page_title::CvPageTitle title="Jan Dryk">
+        <CvPage>
+            <CvPageTitle title="Jan Dryk">
                 "I'm an experienced leader with a passion for technology.
                 During the day, I'm utilizing my experience with software engineering and agile ways of working to shape
                 teams into highly-performing product organization.
                 At night I enjoy learning about new programming languages and frameworks and building small projects.
                 This technical expertise helps me to be a better leader, and guide the developers to be more effective."
-            </cv_page_title::CvPageTitle>
-            <cv_section::CvSection title="Experience">
+            </CvPageTitle>
+            <CvSection title="Experience">
                 <div style="display: grid; gap: 2rem">
-                    <cv_job::CvJob start="2023"
+                    <CvJob start="2023"
                            company="MSD"
                            title="Associate Director - Digital Marketing & Channels VT Delivery">
                         <ul class="list-disc">
@@ -46,7 +53,7 @@ pub fn AboutPage() -> impl IntoView {
                                     "Building high performance agile delivery squads (DevSecOps)"
                                 </li>
                                 <li>
-                                    "Motivating and upskilling developers, hiring new developers"
+                                    "Motivating and mentoring developers, hiring new developers"
                                 </li>
                                 <li>
                                     "Establishing mature tiered product management and
@@ -55,9 +62,9 @@ pub fn AboutPage() -> impl IntoView {
                                 </li>
                             </ul>
                         </ul>
-                    </cv_job::CvJob>
-                    <cv_job::CvJob start="2022"
-                           end="2023"
+                    </CvJob>
+                    <CvJob start="Jun 2022"
+                           end="Nov 2022"
                            company="MSD"
                            title="Associate Director - Marketing Execution Global Delivery">
                         <ul class="list-disc">
@@ -80,25 +87,25 @@ pub fn AboutPage() -> impl IntoView {
                                 Bitbucket, SonarQube in the organisation"
                             </li>
                         </ul>
-                    </cv_job::CvJob>
-                    <cv_job::CvJob start="2020"
-                           end="2022"
+                    </CvJob>
+                    <CvJob start="Jun 2020"
+                           end="Jun 2022"
                            company="MSD"
-                           title="Senior Global Delivery Lead - Marketing Execution">
+                           title="Senior Delivery Lead - Marketing Execution">
                         <ul class="list-disc">
                             <li>"Lead 4 agile delivery squads"</li>
                             <li>
                                 "Coordinated multiple product teams to deliver an E2E solution
                                 to the customer as one team"
                             </li>
-                            <li>"Lead transformation for our team to agile at scale"</li>
-                            <li>"Responsible for agile release management for the team"</li>
+                            <li>"Lead an effort to change the ways of working of our product line to agile at scale"</li>
+                            <li>"Responsible for delivery, quality, release management, and operations for the product line"</li>
                         </ul>
-                    </cv_job::CvJob>
-                    <cv_job::CvJob start="2019"
-                           end="2020"
+                    </CvJob>
+                    <CvJob start="Mar 2020"
+                           end="Jun 2020"
                            company="MSD"
-                           title="Senior Technical Product Owner - Digital Identity & Consent">
+                           title="Senior Technical Product Manager - Digital Identity & Consent">
                         <ul class="list-disc">
                             <li>
                                 "Lead an agile product team for a solution partly SaaS partly
@@ -109,35 +116,38 @@ pub fn AboutPage() -> impl IntoView {
                                 stakeholders"
                             </li>
                         </ul>
-                    </cv_job::CvJob>
-                    <cv_job::CvJob start="2017"
-                           end="2019"
+                    </CvJob>
+                    <CvJob start="Feb 2017"
+                           end="Mar 2020"
                            company="MSD"
                            title="Solutions Architect - Digital Marketing & Channels">
                         <ul class="list-disc">
                             <li>
                                 "Prepared an architecture vision for an integrated digital
-                                marketing platform"
+                                marketing platform, gathered buy-in for that vision from all stakeholders, 
+                                and worked with developers to execute the vision"
                             </li>
-                            <li>"Influenced stakeholders to get buy in for the vision"</li>
-                            <li>"Worked closely with developers to execute on the vision"</li>
+                            <li>"Notable features included deeplinking, the front-end package, 
+                                real-time integrations for sychronizing data across systems, and more."</li>
+                            <li>"Sped up the delivery of the Digital Identity product from 1 year per market to 1 month per market."</li>
+                            <li>"Lead the MDE packaging program aimed at building a cross value team integrated marketing ecosystem with 5+ integrated products."</li>
                         </ul>
-                    </cv_job::CvJob>
-                    <cv_job::CvJob start="2016"
-                           end="2017"
+                    </CvJob>
+                    <CvJob start="Sep 2016"
+                           end="Feb 2017"
                            company="MSD"
                            title="Innovation Developer - Digital Marketing & Channels">
                         <ul class="list-disc">
-                            <li>
-                                "Developed innovative tools and integrations using AWS, TypeScript"
-                            </li>
+                            <li>Developed innovative tools and integrations using AWS, TypeScript</li>
+                            <li>Lead the effort to migrate ETL scripts from an EC2 to Lambdas</li>
+                            <li>Evangelised the team to use TypeScript</li>
                         </ul>
-                    </cv_job::CvJob>
+                    </CvJob>
                 </div>
-            </cv_section::CvSection>
-            <cv_section::CvSection title="Skills">
+            </CvSection>
+            <CvSection title="Skills">
                 <div style="display: grid; gap: 1rem">
-                    <cv_tag_list::CvTagList
+                    <CvTagList
                             title="Proficient"
                             tags={vec![
                                 "F#".to_string(),
@@ -159,7 +169,7 @@ pub fn AboutPage() -> impl IntoView {
                                 "Rust".to_string(),
                             ]}
                     />
-                    <cv_tag_list::CvTagList
+                    <CvTagList
                             title="Familiar"
                             tags={vec![
                                 "PHP".to_string(),
@@ -174,7 +184,7 @@ pub fn AboutPage() -> impl IntoView {
                                 "Machine Learning".to_string(),
                             ]}
                     />
-                    <cv_tag_list::CvTagList
+                    <CvTagList
                             title="Services"
                             tags={vec![
                                 "AWS".to_string(),
@@ -189,23 +199,23 @@ pub fn AboutPage() -> impl IntoView {
                             ]}
                     />
                 </div>
-            </cv_section::CvSection>
-            <cv_section::CvSection title="Contact">
+            </CvSection>
+            <CvSection title="Contact">
                 <div class="flex flex-wrap gap-2 mb-10 mt-1">
-                    <cv_button::CvButton href="https://uxsoft.cz">
-                        <cv_icons::CvWebIcon/>
+                    <CvButton href="https://uxsoft.cz">
+                        <CvWebIcon/>
                         uxsoft.cz
-                    </cv_button::CvButton>
-                    <cv_button::CvButton href="https://github.com/uxsoft">
-                        <cv_icons::CvGitHubIcon/>
+                    </CvButton>
+                    <CvButton href="https://github.com/uxsoft">
+                        <CvGitHubIcon/>
                         github.com/uxsoft
-                    </cv_button::CvButton>
-                    <cv_button::CvButton href="mailto:me@uxsoft.cz">
-                        <cv_icons::CvEmailIcon/>
+                    </CvButton>
+                    <CvButton href="mailto:me@uxsoft.cz">
+                        <CvEmailIcon/>
                         me@uxsoft.cz
-                    </cv_button::CvButton>
+                    </CvButton>
                 </div>
-            </cv_section::CvSection>
-        </cv_page::CvPage>
+            </CvSection>
+        </CvPage>
     }
 }

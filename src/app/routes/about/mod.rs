@@ -30,7 +30,7 @@ pub fn AboutPage() -> impl IntoView {
                 <div style="display: grid; gap: 2rem">
                     <CvJob start="Nov 2023"
                            company="MSD"
-                           title="Associate Director - Digital Marketing Engagement Delivery">
+                           title="Associate Director - Digital Marketing Engagement Delivery & Operations">
                         <ul class="list-disc">
                             <li>"Reorganised the product line by value streams to focus on our customers."</li>
                             <li>"Built an internal team, internalized key knowledge and took ownership of the solution."</li>

@@ -20,53 +20,33 @@ pub fn AboutPage() -> impl IntoView {
     view! {
         <CvPage>
             <CvPageTitle title="Jan Dryk">
-                "I'm an experienced leader with a passion for technology.
-                During the day, I'm leveraging my experience with software engineering and agile ways of working to shape
-                teams into highly-performing product organization.
-                At night I enjoy learning about new programming languages and frameworks and building small projects.
+                "I'm an experienced leader with a passion for technology and learning.
+                During the day, I leverage my experience with software engineering and agile ways of working to shape
+                groups of individuals into highly-performing customer oriented product teams.
+                At night I enjoy learning new programming languages and frameworks and building small projects.
                 This technical expertise helps me to be a better leader, and guide the developers to be more effective."
             </CvPageTitle>
             <CvSection title="Experience">
                 <div style="display: grid; gap: 2rem">
-                    <CvJob start="2023"
+                    <CvJob start="Nov 2023"
                            company="MSD"
                            title="Associate Director - Digital Marketing Engagement Delivery">
                         <ul class="list-disc">
-                            <li>
-                                "Supporting our product lines with setting up agile delivery
-                                using DevSecOps & SCRUM"
-                            </li>
-                            <li>"Centralising delivery in VT"</li>
-                            <li>
-                                "Managing a team of 8 employees, leading delivery orchestrators"
-                            </li>
-                            <li>
-                                "Responsible for transformation of a struggling product line"
-                            </li>
-                            <ul class="list-disc ml-7">
-                                <li>
-                                    "Vendor management (fixing over-reliance on vendors, bringing
-                                    key knowledge in house)"
-                                </li>
-                                <li>
-                                    "Building high performance agile delivery squads (DevSecOps)"
-                                </li>
-                                <li>
-                                    "Motivating and mentoring developers, hiring new developers"
-                                </li>
-                                <li>
-                                    "Establishing mature tiered product management and
-                                    architecture practices to support the delivery squads,
-                                    setting up ways of working, upskilling team members"
-                                </li>
-                            </ul>
+                            <li>"Reorganised the product line by value streams to focus on our customers."</li>
+                            <li>"Built an internal team, internalized key knowledge and took ownership of the solution."</li>
+                            <li>"Establed a mature tiered product management and architecture practices to support the delivery squads, adopted agile ways of working, mentored team members and colleagues."</li>
+                            <li>"Lead a team of 10 employees, 50+ contractors."</li>
+                            <li>"Managed a budget of ~$9M for delivery and ~$5M for operations."</li>
+                            <li>"Established a mature release management process to address customer concerns about quality."</li>
+                            <li>"Significantly increased the velocity of the team, helped the team to start make and meet commitments."</li>
+                            <li>"Lead an effort to optimize operations costs by with ~$1M in cost savings."</li>
                         </ul>
                     </CvJob>
                     <CvJob start="Jun 2022"
                            end="Nov 2022"
                            company="MSD"
                            title="Associate Director - Marketing Execution Delivery">
-                        <ul class="prose">
+                        <ul class="list-disc">
                             <li>
                                 "Lead 6 agile delivery squads and a team of supporting roles
                                 (delivery leads, scrum masters, engineering managers, ...)"
@@ -87,7 +67,7 @@ pub fn AboutPage() -> impl IntoView {
                             </li>
                             <li>
                                 <i>"Extra Assignment: Content Tagging Automation (CTAP)"</i>
-                                <ul class="list-disc ml-3">
+                                <ul class="list-disc ml-4">
                                     <li>"Rebuilt trust with the business stakeholders"</li>
                                     <li>"Significantly accelerated delivery, reorganized the team, coached team members and adopted agile ways of working"</li>
                                 </ul>
@@ -144,9 +124,9 @@ pub fn AboutPage() -> impl IntoView {
                            company="MSD"
                            title="Innovation Developer - Digital Marketing & Channels">
                         <ul class="list-disc">
-                            <li>Developed innovative tools and integrations using AWS, TypeScript</li>
-                            <li>Lead the effort to migrate ETL scripts from an EC2 to Lambdas</li>
-                            <li>Evangelised the team to use TypeScript</li>
+                            <li>"Developed innovative tools and integrations using AWS, TypeScript"</li>
+                            <li>"Lead the effort to migrate ETL scripts from an EC2 to Lambdas"</li>
+                            <li>"Evangelised the team to use TypeScript"</li>
                         </ul>
                     </CvJob>
                 </div>
@@ -156,54 +136,55 @@ pub fn AboutPage() -> impl IntoView {
                     <CvTagList
                             title="Proficient"
                             tags={vec![
-                                "F#".to_string(),
-                                "C#".to_string(),
-                                "ASP.NET Core".to_string(),
-                                "WPF".to_string(),
-                                "Entity Framework Core".to_string(),
-                                "MAUI".to_string(),
-                                "Umbraco".to_string(),
-                                "Java".to_string(),
-                                "LaTeX".to_string(),
-                                "VB.NET".to_string(),
-                                "SQL".to_string(),
-                                "Javascript".to_string(),
-                                "TypeScript".to_string(),
-                                "React".to_string(),
-                                "Astro".to_string(),
-                                "UML".to_string(),
-                                "Rust".to_string(),
+                                "Rust",
+                                "Astro",
+                                "F#",
+                                "C#",
+                                "ASP.NET Core",
+                                "WPF",
+                                "Entity Framework Core",
+                                "MAUI",
+                                "Umbraco",
+                                "Java",
+                                "LaTeX",
+                                "VB.NET",
+                                "SQL",
+                                "Javascript",
+                                "TypeScript",
+                                "React",
+                                "UML",
+                                "Swift",
                             ]}
                     />
                     <CvTagList
                             title="Familiar"
                             tags={vec![
-                                "PHP".to_string(),
-                                "Objective-C".to_string(),
-                                "Matlab".to_string(),
-                                "Protege".to_string(),
-                                "Mathematica".to_string(),
-                                "Pascal".to_string(),
-                                "Kotlin".to_string(),
-                                "Swift".to_string(),
-                                "Python".to_string(),
-                                "Machine Learning".to_string(),
+                                "PHP",
+                                "Objective-C",
+                                "Matlab",
+                                "Protege",
+                                "Mathematica",
+                                "Pascal",
+                                "Kotlin",
+                                "Python",
+                                "Machine Learning",
+                                "WordPress",
                             ]}
                     />
                     <CvTagList
                             title="Services"
                             tags={vec![
-                                "AWS".to_string(),
-                                "Microsoft Azure".to_string(),
-                                "Microsoft Azure DevOps".to_string(),
-                                "Microsoft App Center".to_string(),
-                                "GitHub".to_string(),
-                                "Kubernetes".to_string(),
-                                "Traefik".to_string(),
-                                "Longhorn".to_string(),
-                                "ArgoCD".to_string(),
-                                "JIRA".into(),
-                                "Confluence".into(),
+                                "AWS",
+                                "Microsoft Azure",
+                                "Microsoft Azure DevOps",
+                                "Microsoft App Center",
+                                "GitHub",
+                                "Kubernetes",
+                                "Traefik",
+                                "Longhorn",
+                                "ArgoCD",
+                                "JIRA",
+                                "Confluence",
                             ]}
                     />
                 </div>

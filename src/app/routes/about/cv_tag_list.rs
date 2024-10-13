@@ -3,7 +3,7 @@ use leptos::*;
 #[component]
 pub fn CvTagList(
     #[prop(into, default = "".to_string())] title: String,
-    #[prop(default = vec![])] tags: Vec<String>,
+    #[prop(default = vec![])] tags: Vec<impl Into<String>>,
 ) -> impl IntoView {
     view! {
         <div class="gap-3 flex">
@@ -16,7 +16,7 @@ pub fn CvTagList(
                     .map(|t| {
                         view! {
                             <div class="text-sm leading-5 text-center bg-neutral-200 px-3 py-[3px] rounded-[3px]">
-                                <p class="text-sm leading-5 m-0 p-0">{t}</p>
+                                <p class="text-sm leading-5 m-0 p-0">{t.into()}</p>
                             </div>
                         }
                     })

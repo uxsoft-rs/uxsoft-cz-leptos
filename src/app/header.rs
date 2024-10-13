@@ -4,7 +4,7 @@ use leptos_router::A;
 #[component]
 pub fn Header() -> impl IntoView {
     view! {
-        <nav class="mb-3 pt-6 flex">
+        <nav class="mb-3 pt-6 flex print:hidden">
             <a rel="prefetch" href="/" class="text-transparent flex-none">
                 <img id="logo" class="w-[37px] h-[37px]" src="/images/Images/logo.svg" alt="Logo"/>
             </a>

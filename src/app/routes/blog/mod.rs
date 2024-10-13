@@ -16,15 +16,20 @@ pub const POSTS: &'static [&'static Post] = &[
         title: "Hiring with Behavioral Questions",
         markdown: include_str!("hiring-behavioral-questions.md"),
     },
+    // &Post {
+    //     id: "hiring-developer-questions",
+    //     title: "Hiring a Developer",
+    //     markdown: include_str!("hiring-developer-questions.md"),
+    // },
+    // &Post {
+    //     id: "kubernetes-on-pi",
+    //     title: "Kubernetes on Raspberry Pi",
+    //     markdown: include_str!("kubernetes-on-pi.md"),
+    // },
     &Post {
-        id: "hiring-developer-questions",
-        title: "Hiring a Developer",
-        markdown: include_str!("hiring-developer-questions.md"),
-    },
-    &Post {
-        id: "kubernetes-on-pi",
-        title: "Kubernetes on Raspberry Pi",
-        markdown: include_str!("kubernetes-on-pi.md"),
+        id: "macos-permanent-admin",
+        title: "Permanent Admin on MacOS",
+        markdown: include_str!("macos-permanent-admin.md")
     }
 ];
 

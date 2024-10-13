@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/BlogLayout.astro
 title: Hiring with Behavioral Questions
 ---
 

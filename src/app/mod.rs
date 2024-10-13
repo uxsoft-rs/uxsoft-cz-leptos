@@ -1,12 +1,11 @@
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
-use leptos_image::{provide_image_context, Image};
 
+pub mod components;
 mod footer;
 mod header;
 mod routes;
-pub mod components;
 
 #[component]
 pub fn App() -> impl IntoView {

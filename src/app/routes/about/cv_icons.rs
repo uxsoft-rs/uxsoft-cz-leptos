@@ -6,7 +6,7 @@ pub fn CvEmailIcon() -> impl IntoView {
         <span
             role="img"
             aria-label="mail"
-            class="inline-flex items-center text-inherit not-italic leading-[0] text-center normal-case align-[-.125em]"
+            class="inline-flex items-center text-inherit not-italic leading-[0] text-center normal-case align-[-.125em] mr-1"
         >
             <svg
                 viewBox="64 64 896 896"
@@ -29,7 +29,7 @@ pub fn CvGitHubIcon() -> impl IntoView {
         <span
             role="img"
             aria-label="mail"
-            class="inline-flex items-center text-inherit not-italic leading-[0] text-center normal-case align-[-.125em]"
+            class="inline-flex items-center text-inherit not-italic leading-[0] text-center normal-case align-[-.125em] mr-1"
         >
             <svg
                 viewBox="64 64 896 896"
@@ -52,7 +52,7 @@ pub fn CvWebIcon() -> impl IntoView {
         <span
             role="img"
             aria-label="mail"
-            class="inline-flex items-center text-inherit not-italic leading-[0] text-center normal-case align-[-.125em]"
+            class="inline-flex items-center text-inherit not-italic leading-[0] text-center normal-case align-[-.125em] mr-1"
         >
             <svg
                 viewBox="64 64 896 896"
@@ -75,7 +75,7 @@ pub fn CvLinkIcon() -> impl IntoView {
         <span
             role="img"
             aria-label="mail"
-            class="inline-flex items-center text-inherit not-italic leading-[0] text-center normal-case align-[-.125em]"
+            class="inline-flex items-center text-inherit not-italic leading-[0] text-center normal-case align-[-.125em] mr-1"
         >
             <svg
                 viewBox="64 64 896 896"

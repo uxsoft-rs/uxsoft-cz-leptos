@@ -22,17 +22,18 @@ tracing = { version = "0.1", optional = true }
 http = "1"
 serde = { version = "1.0.196", features = ["derive"] }
 serde_json = "1.0.113"
-comrak = "0.24"
+gray_matter = { version = "0.2", optional = true }
+pulldown-cmark = { version = "0.12", optional = true }
 leptos_image = { git = "https://github.com/uxsoft/leptos-image", optional = true }
-# thaw = "0.3.2"
+cfg-if = "1"
+comrak = "0.29"
 
 [features]
 hydrate = [
     "leptos/hydrate",
     "leptos_meta/hydrate",
     "leptos_router/hydrate",
-    "leptos_image/hydrate",
-    # "thaw/hydrate"
+    "leptos_image/hydrate"
 ]
 ssr = [
     "dep:axum",
@@ -45,7 +46,8 @@ ssr = [
     "leptos_router/ssr",
     "dep:tracing",
     "leptos_image/ssr",
-    # "thaw/ssr"
+    "dep:gray_matter",
+    "dep:pulldown-cmark"
 ]
 leptos_image = ["dep:leptos_image"]
 

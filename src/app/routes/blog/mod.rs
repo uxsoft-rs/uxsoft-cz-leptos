@@ -1,53 +1,36 @@
 use crate::app::components::list_item::ListItem;
-use crate::app::components::markdown::Markdown;
 use crate::app::components::page_title::PageTitle;
 use leptos::*;
 use leptos_router::*;
 
-pub struct Post {
-    pub id: &'static str,
-    pub title: &'static str,
-    pub markdown: &'static str,
-}
-
-pub const POSTS: &'static [&'static Post] = &[
-    &Post {
-        id: "hiring-behavioral-questions",
-        title: "Hiring with Behavioral Questions",
-        markdown: include_str!("hiring-behavioral-questions.md"),
-    },
-    // &Post {
-    //     id: "hiring-developer-questions",
-    //     title: "Hiring a Developer",
-    //     markdown: include_str!("hiring-developer-questions.md"),
-    // },
-    // &Post {
-    //     id: "kubernetes-on-pi",
-    //     title: "Kubernetes on Raspberry Pi",
-    //     markdown: include_str!("kubernetes-on-pi.md"),
-    // },
-    &Post {
-        id: "macos-permanent-admin",
-        title: "Permanent Admin on MacOS",
-        markdown: include_str!("macos-permanent-admin.md")
-    }
-];
+pub mod server;
+pub mod article;
 
 #[component]
 pub fn BlogPage() -> impl IntoView {
+    let posts = expect_context::<Resource<(), Result<Vec<article::Article>, ServerFnError>>>();
+
     view! {
         <div>
-            <PageTitle title="Utilities"/>
-
-            <ul>
-                {POSTS
-                    .iter()
-                    .map(|u| {
-                        view! { <ListItem title={u.title} url=format!("/blog/{}", u.id)/> }
-                    })
-                    .collect_view()}
-
-            </ul>
+            <PageTitle title="Blog"/>
+            <Suspense>
+            { move || match posts.get() {
+                    None => view! { <p>"Loading..."</p> }.into_view(),
+                    Some(Err(e)) => view! { <p>{move || format!("Error loading posts: {:?}", e)}</p> }.into_view(),
+                    Some(Ok(data)) => view!{
+                        <ul>
+                            {data
+                                .into_iter()
+                                .map(|post| view!{
+                                    <ListItem title={post.metadata.title} url=format!("/blog/{}", post.id)/>
+                                })
+                                .collect_view()
+                            }
+                        </ul>
+                    }.into_view()
+                }
+            }
+            </Suspense>
         </div>
     }
 }
@@ -55,26 +38,34 @@ pub fn BlogPage() -> impl IntoView {
 #[component]
 pub fn BlogPostPage() -> impl IntoView {
     let params = use_params_map();
+    let posts = expect_context::<Resource<(), Result<Vec<article::Article>, ServerFnError>>>();
 
-    let component = move || {
-        params.with(|params| params
-            .get("id")
-            .cloned()
-            .and_then(|id|POSTS.iter().find(|u|u.id==id)))
-            .map(|post| view! {
-                <>
-                    <PageTitle title=post.title/>
-                    <Markdown markdown=post.markdown/>
-                </>
-            })
-            .unwrap_or(view! {
-                <>"Page not found"</>
-            })
-    };
+    let post = Resource::new(
+        move || params.get().get("id").cloned(), 
+        move |id| async move {
+            match id {
+                None => None,
+                Some(id) => posts.get()
+                    .and_then(|r| r.ok())
+                    .and_then(|posts| posts.into_iter().find(|p| p.id == id))
+            }
+        }
+    );
 
     view! {
-        <>
-            {component}
-        </>
+        <Suspense fallback=move || view! { <p>"Loading..."</p> }>
+            { move || match post.get() {
+                    None => view! { "Loading..." }.into_view(),
+                    Some(None) => view! { "Error..." }.into_view(),
+                    Some(Some(post)) => view! {
+                        <PageTitle title=post.metadata.title/>
+                        <article class="prose" inner_html=post.content>
+                            
+                        </article>
+                    }.into_view()
+                }
+
+            }
+        </Suspense>
     }
 }

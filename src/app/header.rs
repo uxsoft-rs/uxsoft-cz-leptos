@@ -1,8 +1,17 @@
 use leptos::*;
 use leptos_router::A;
 
+use crate::app::routes::blog::article::Article;
+
 #[component]
 pub fn Header() -> impl IntoView {
+    let blog_posts = expect_context::<Resource<(), Result<Vec<Article>, ServerFnError>>>();
+
+    let blog_posts_unwrapped = || {
+        blog_posts.get()
+            .and_then(|r| r.ok())
+    };
+
     view! {
         <nav class="mb-3 pt-6 flex print:hidden">
             <a rel="prefetch" href="/" class="text-transparent flex-none">
@@ -48,16 +57,22 @@ pub fn Header() -> impl IntoView {
                         Blog
                     </a>
                     <ul>
-                    {crate::app::routes::blog::POSTS
-                        .iter()
-                        .map(|u| {
-                            view! {
-                                <li>
-                                    <A href=format!("/blog/{}", u.id)>{u.title}</A>
-                                </li>
+                        <Suspense>
+                            {move || blog_posts
+                                .get()
+                                .and_then(|r| r.ok())
+                                .map(|posts| posts.into_iter()
+                                    .map(|u| {
+                                        view! {
+                                            <li>
+                                                <A href=format!("/blog/{}", u.id)>{u.metadata.title}</A>
+                                            </li>
+                                        }
+                                    })
+                                    .collect_view()
+                                )
                             }
-                        })
-                        .collect_view()}
+                        </Suspense>
                     </ul>
                 </li>
                 <li>

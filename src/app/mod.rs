@@ -1,6 +1,7 @@
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
+use routes::blog::server::fetch_articles;
 
 pub mod components;
 mod footer;
@@ -9,9 +10,11 @@ mod routes;
 
 #[component]
 pub fn App() -> impl IntoView {
-    // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
     leptos_image::provide_image_context();
+
+    let blog_posts = Resource::new(|| (), |_| async move { fetch_articles().await });
+    provide_context(blog_posts);
 
     view! {
         <Html lang="en"/>

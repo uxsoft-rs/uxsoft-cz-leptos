@@ -1,5 +1,6 @@
 ---
 title: Permanent Admin on MacOS
+date: 2024-10-13
 ---
 
 ## Sudoers
@@ -20,7 +21,12 @@ john        ALL = (ALL) ALL
 
 ## Admin Group
 
-Add your user to the admin group using the following command: ([source](https://superuser.com/questions/214004/how-to-add-user-to-a-group-from-mac-os-x-command-line)).
+Check if user is an admin:
+```bash
+dseditgroup -o checkmember -m john admin
+```
+
+Add your user to the admin group ([source](https://superuser.com/questions/214004/how-to-add-user-to-a-group-from-mac-os-x-command-line)):
 
 
 ```bash

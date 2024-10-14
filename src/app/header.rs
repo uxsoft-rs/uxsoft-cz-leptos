@@ -7,11 +7,6 @@ use crate::app::routes::blog::article::Article;
 pub fn Header() -> impl IntoView {
     let blog_posts = expect_context::<Resource<(), Result<Vec<Article>, ServerFnError>>>();
 
-    let blog_posts_unwrapped = || {
-        blog_posts.get()
-            .and_then(|r| r.ok())
-    };
-
     view! {
         <nav class="mb-3 pt-6 flex print:hidden">
             <a rel="prefetch" href="/" class="text-transparent flex-none">

@@ -10,7 +10,7 @@ Add the user to the sudoers file:
 sudo hx /etc/sudoers
 ```
 
-Edit the following section and add your user below `root` and `%admin`. 
+Edit the following section and add your user below `root` and `%admin`.
 ```
 # root and users in group wheel can run anything on any machine as any user
 root		ALL = (ALL) ALL
@@ -27,9 +27,12 @@ dseditgroup -o checkmember -m john admin
 ```
 
 Add your user to the admin group ([source](https://superuser.com/questions/214004/how-to-add-user-to-a-group-from-mac-os-x-command-line)):
-
-
 ```bash
 sudo dseditgroup -o edit -a john -t user admin
 ```
 
+Or you can create aliases in `.zshrc`:
+```bash
+alias isadmin="dseditgroup -o checkmember -m dryk admin"
+alias makeadmin="sudo dseditgroup -o edit -a dryk -t user admin"
+```

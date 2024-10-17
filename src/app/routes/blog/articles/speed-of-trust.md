@@ -1,6 +1,5 @@
 ---
 title: Speed of Trust
-draft: true
 date: 2024-10-14
 ---
 
@@ -58,3 +57,59 @@ Speed of Trust by Stephen Covey is a bible for every leader who wants to be succ
 - Be on time and within budget.
 - Don't overpromise and underdeliver.
 - Don't make excuses for not delivering.
+
+### #7 Get Better
+- Continuously improve.
+- Increase your capabilities.
+- Be a constant learner.
+- Develop feedback systems - both formal and informal.
+- Thank people for feedback.
+- Don't consider yourself above feedback.
+- Don't assume todays knowledge and skills will be sufficient for tomorrow's challenges.
+
+### #8 Confront Reality
+- Address the tough stuff directly.
+- Acknowledge the unsaid.
+- Lead out the curageously in conversation.
+- Remove the "sword from their hands".
+- Don't skirt the real issues.
+- Don't bury your head in the sand.
+
+### #9 Clarify Expectations
+- Disclose and reveal expectations.
+- Discuss them and validate them.
+- Renegotiate when needed and possible.
+- Don't violate expectations.
+- Don't assume that expectations are clear or shared.
+
+### #10 Practice Accountability
+- Hold yourself accountable.
+- Hold others accountable.
+- Take responsibility for results.
+- Be clear on how you'll communicate how you're doing and how others are doing.
+- Don't avoid or shirk responsibility.
+- Don't blame others or point fingers when things go wrong..
+
+### #11 Listen First
+- Listen before you speak.
+- Understand.
+- Diagnose.
+- Listen with your ears - and your eyes and heart.
+- Find out what the most important behaviors are to the people you're working with.
+- Don't assume you know what matters most to others.
+- Don't presume you have all the answers - or all the questions.
+
+### #12 Keep Commitments
+- Say what you're going to do, then do what you say you're going to do.
+- Make commitments carefully, and keep them.
+- Make keeping commitments the symbol of your honor.
+- Don't break confidences.
+- Don't attempt to "PR" your way out of a commitment you've broken.
+
+### #13 Extend Trust
+- Demonstrate a propensity to trust
+- Extend trust abundantly to those who have earned your trust.
+- Extend conditionally to those who are earning your trust.
+- Learn how to appropriately extend trust to others based on the situation, risk, and credibility (character and competence) of the people involved. )
+- But have a propensity to trust
+- Don't withhold trust because there is a risk involved.
